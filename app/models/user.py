@@ -43,7 +43,6 @@ def user_by_id(user_id: int, db: Session = Depends(get_db)):
     return user
 
 
-# Функция для создания нового пользователя
 @router.post("/create", status_code=status.HTTP_201_CREATED)
 def create_user(create_user: CreateUser, db: Session = Depends(get_db)):
     user = User(**create_user.dict())
@@ -53,7 +52,6 @@ def create_user(create_user: CreateUser, db: Session = Depends(get_db)):
     return {"status_code": status.HTTP_201_CREATED, "transaction": "Successful"}
 
 
-# Функция для обновления данных пользователя
 @router.put("/update/{user_id}", status_code=status.HTTP_200_OK)
 def update_user(user_id: int, update_user: UpdateUser, db: Session = Depends(get_db)):
     user = db.execute(select(User).filter(User.id == user_id)).scalar()
@@ -68,7 +66,6 @@ def update_user(user_id: int, update_user: UpdateUser, db: Session = Depends(get
     return {"status_code": status.HTTP_200_OK, "transaction": "User update is successful!"}
 
 
-# Функция для удаления пользователя
 @router.delete("/delete/{user_id}", status_code=status.HTTP_200_OK)
 def delete_user(user_id: int, db: Session = Depends(get_db)):
     user = db.execute(select(User).filter(User.id == user_id)).scalar()
