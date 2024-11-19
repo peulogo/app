@@ -4,8 +4,8 @@ from app.backend.db import engine
 
 from app.models.task import Task
 from app.models.user import User
-from app.models.user import router as user_router
-from app.models.task import router as task_router
+from app.routers.user import router as user_router
+from app.routers.task import router as task_router
 
 app = FastAPI()
 
